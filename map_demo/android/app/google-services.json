@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1026381895710",
+    "firebase_url": "https://news-efec6.firebaseio.com",
+    "project_id": "news-efec6",
+    "storage_bucket": "news-efec6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026381895710:android:6d7bdd83adbc1a75ddb60f",
+        "android_client_info": {
+          "package_name": "com.example.map_demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026381895710-gg2a3t3fb0qiv1kre9ddnjqd9vt81qjb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArNj2glCSVIvtVnTUBTofgrl7_Fs0F-og"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026381895710-gg2a3t3fb0qiv1kre9ddnjqd9vt81qjb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
