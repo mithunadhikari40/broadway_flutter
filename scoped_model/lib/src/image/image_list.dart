@@ -1,10 +1,12 @@
-import 'dart:math';
-
-import 'package:flutter/material.dart';
+import 'dart:convert';
 import 'dart:io';
 
-import 'package:scoped_model_demo/src/image/custom_image.dart';
+import 'package:async/async.dart';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart';
+import 'package:scoped_model_demo/src/image/custom_image.dart';
 
 class ImageList extends StatefulWidget {
   @override
@@ -43,6 +45,8 @@ class _ImageListState extends State<ImageList> {
     setState(() {
       pickedImages.add(imageFile);
     });
+
+    uploadImage(imageFile);
   }
 
   void _pickImageDialog(BuildContext context) {
@@ -83,5 +87,37 @@ class _ImageListState extends State<ImageList> {
         );
       },
     );
+  }
+
+  void uploadImage(File imageFile) async {
+    var stream =
+        new http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    // get file length
+    var length = await imageFile.length();
+    var multipartFile = new http.MultipartFile('userImage', stream, length,
+        filename: basename(imageFile.path));
+
+    // string to uri
+    var uri = Uri.parse(
+        "http://192.168.101.213:8001/UNDP.RIMS_API/public/saveDemoData");
+
+    // create multipart request
+    var request = new http.MultipartRequest("POST", uri);
+
+    // multipart that takes file
+    
+
+    // add file to multipart
+    request.files.add(multipartFile);
+    request.fields["username"] = "someone@example.com";
+
+    // send
+    var response = await request.send();
+    print("The response from the server is $response");
+
+    // listen for response
+    response.stream.transform(utf8.decoder).listen((value) {
+      print(value);
+    });
   }
 }

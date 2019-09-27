@@ -12,7 +12,7 @@ class NewsList extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("News app"),
+        title: const Text("News app"),
       ),
       body: Center(
         child: buildNewsList(bloc),
@@ -26,14 +26,14 @@ class NewsList extends StatelessWidget {
 refresh:() async {
         await bloc.clearCache();
         await bloc.addItems();
-      }
+      },
 
 
       child: StreamBuilder(
         stream: bloc.topIds,
         builder: (BuildContext context, AsyncSnapshot<List<int>> snapshot) {
           if (!snapshot.hasData) {
-            return CircularProgressIndicator();
+            return const  CircularProgressIndicator();
           }
           return ListView.builder(
             itemCount: snapshot.data.length,
